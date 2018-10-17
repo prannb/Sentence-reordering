@@ -29,9 +29,9 @@ def list2mat(input_lists = input_lists, vec_size = 300):
   shuff_order = list(range(n_sent))
   ran.shuffle(shuff_order)
   documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(input_lists)]
-  model = Doc2Vec(documents, vector_size=300, window=2, min_count=1, workers=4)
+  model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
   for i,sent in enumerate(input_lists):
-    sen_mat[i,:] = model.infer_vector(input_lists[0])
+    sen_mat[i,:] = model.infer_vector(input_lists[i])
   print(sen_mat.shape)
   for i in range(n_sent):
     shuff_sen_mat[i,:] = sen_mat[shuff_order[i]]
