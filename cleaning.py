@@ -30,3 +30,4 @@ if __name__ == '__main__':
     # file.close()
     text = "some text"
     data = main(text)
+    print(data)
