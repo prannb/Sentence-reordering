@@ -28,5 +28,7 @@ if __name__ == '__main__':
     # file = open(filename, 'r')
     # text = file.read()
     # file.close()
-    text = "some text"
-    data = main(text)
+    text_list = ["some text. However it is missing", "I am happy today. I will go to camp"]
+    for text in text_list:
+        data = main(text)
+        print(data)
