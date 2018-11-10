@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 GoogleNews-vectors-negative300.bin
 *.pyc
 *.pkl
-=======
 data/python3_data_names.tsv
->>>>>>> 97e4d0a7a98f805271828684fdb844775d154874
