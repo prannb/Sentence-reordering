@@ -34,5 +34,14 @@ def main():
 
 if __name__ == '__main__':
     print("Cleaning the data")
+<<<<<<< HEAD:cleaning_whole.py
     main()
     
+=======
+    # file = open(filename, 'r')
+    # text = file.read()
+    # file.close()
+    text = "some text"
+    data = main(text)
+    print(data)
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7:cleaning.py

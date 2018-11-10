@@ -3,6 +3,7 @@ import numpy as np
 import random as ran
 import pickle
 
+<<<<<<< HEAD
 from keras.models import Sequential
 from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed
 from sklearn.model_selection import train_test_split
@@ -15,6 +16,9 @@ NUM_CLASS = 20
 
 # input_lists = get_dataset()
 input_lists = [[['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
+=======
+input_lists = [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7
  				['thing'], 
  				['dont', 'think'],
   				['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
@@ -26,45 +30,13 @@ input_lists = [[['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 
   				['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
   				['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
   				['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-  				['might', 'know', 'child', 'forbidden', 'hospital', 'bed', 'driveby'], 
+  				['might', 'know', 'child', 'forbidde', 'hospital', 'bed', 'driveby'], 
   				['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
   				['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-  				['thank', 'listening']],
-          [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
-          ['thing'], 
-          ['dont', 'think'],
-          ['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
-          ['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], 
-          ['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], 
-          ['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'],
-          ['learn', 'countrysstates', 'outside'], 
-          ['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], 
-          ['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
-          ['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
-          ['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-          ['might', 'know', 'child', 'forbidden', 'hospital', 'bed', 'driveby'], 
-          ['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
-          ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-          ['thank', 'listening']],
-          [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
-          ['thing'], 
-          ['dont', 'think'],
-          ['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
-          ['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], 
-          ['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], 
-          ['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'],
-          ['learn', 'countrysstates', 'outside'], 
-          ['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], 
-          ['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
-          ['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
-          ['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-          ['might', 'know', 'child', 'forbidden', 'hospital', 'bed', 'driveby'], 
-          ['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
-          ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-          ['thank', 'listening']]]
+  				['thank', 'listening']]
 
 
-def list2mat(input_lists = input_lists, vec_size = sen_vec_len):
+def list2mat(input_lists = input_lists, vec_size = 300):
   #returns sentence matrix numb_sent x vec_size, randomly shuffled matrix, shuffling order
 
   n_sent = len(input_lists)
@@ -76,11 +48,13 @@ def list2mat(input_lists = input_lists, vec_size = sen_vec_len):
   model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
   for i,sent in enumerate(input_lists):
     sen_mat[i,:] = model.infer_vector(input_lists[i])
+  print(sen_mat.shape)
   for i in range(n_sent):
     shuff_sen_mat[i,:] = sen_mat[shuff_order[i]]
 
   return sen_mat, shuff_sen_mat, shuff_order
 
+<<<<<<< HEAD
 def order2output(c):
   op = np.identity(max_sent)
   order = c
@@ -102,3 +76,6 @@ def format_data(input_lists = input_lists):
     n_shuff_sen_mat[i,0:b.shape[0],0:b.shape[1]] = b
     Y[i,:,:] = order2output(c)# Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
   return n_shuff_sen_mat,Y
+=======
+list2mat()
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7
