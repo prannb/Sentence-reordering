@@ -1,8 +1,24 @@
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import numpy as np
 import random as ran
+import pickle
 
+<<<<<<< HEAD
+from keras.models import Sequential
+from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed
+from sklearn.model_selection import train_test_split
+
+from cleaning import get_dataset
+#--------------------Model Variables-----------
+sen_vec_len = 300
+max_sent = 20
+NUM_CLASS = 20
+
+# input_lists = get_dataset()
+input_lists = [[['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
+=======
 input_lists = [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7
  				['thing'], 
  				['dont', 'think'],
   				['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
@@ -38,4 +54,28 @@ def list2mat(input_lists = input_lists, vec_size = 300):
 
   return sen_mat, shuff_sen_mat, shuff_order
 
+<<<<<<< HEAD
+def order2output(c):
+  op = np.identity(max_sent)
+  order = c
+  for ind,ele in enumerate(order):
+    d = order[0:ind+1]
+    d.sort()
+    op[ind,ind] = 0
+    op[ind,d.index(ele)] = 1 
+  return op
+
+def format_data(input_lists = input_lists):
+  n = len(input_lists)
+  n_sen_mat = np.zeros((n,max_sent,sen_vec_len))
+  n_shuff_sen_mat = np.zeros((n,max_sent,sen_vec_len))
+  Y = np.zeros((n,max_sent,max_sent))
+  for i in range(len(input_lists)):
+    a,b,c = list2mat(input_lists[i])
+    n_sen_mat[i,0:a.shape[0],0:a.shape[1]] = a
+    n_shuff_sen_mat[i,0:b.shape[0],0:b.shape[1]] = b
+    Y[i,:,:] = order2output(c)# Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
+  return n_shuff_sen_mat,Y
+=======
 list2mat()
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7

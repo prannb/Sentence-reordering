@@ -4,7 +4,6 @@ from keras.layers import LSTM
 from keras.models import Sequential
 import numpy as np
 import tensorflow as tf
-# define model
 
 # inputs1 = Input(shape=(1, 1))
 # print(inputs1)
@@ -29,7 +28,10 @@ model_lstm = Model(inputs=inputs1, outputs=[lstm1, state_h, state_c])
 
 
 for i in range(m):
-    lstn_output, hidden_states, cell_states = model_lstm.predict(input_entry[i])
+    lstm_output, hidden_states, cell_states = model_lstm.predict(input_entry[i])
     model_lstm.layers[1].states[0] = hidden_states
     model_lstm.layers[1].states[1] = cell_states 
-    print(lstn_output)
+    print(lstm_output)
+
+
+model = Sequential()
