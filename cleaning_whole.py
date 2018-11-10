@@ -2,9 +2,10 @@ from nltk import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
+from dataset2list import create_list
 
 
-def main(text):
+def clean_para(text):
     sentences = sent_tokenize(text)
     table = str.maketrans('', '', string.punctuation)
     stop_words = stopwords.words('english')
@@ -20,14 +21,27 @@ def main(text):
     # print(data)
     return data
 
+def get_dataset():
+    text_list = create_list()
+    data = []
+    for text in text_list:
+        data.append(main(text))
+    return data d
 
+def main():
+    get_dataset()
 
 
 if __name__ == '__main__':
     print("Cleaning the data")
+<<<<<<< HEAD:cleaning_whole.py
+    main()
+    
+=======
     # file = open(filename, 'r')
     # text = file.read()
     # file.close()
     text = "some text"
     data = main(text)
     print(data)
+>>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7:cleaning.py
