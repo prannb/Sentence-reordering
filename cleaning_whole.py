@@ -2,15 +2,21 @@ from nltk import sent_tokenize
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
+import pickle
 from dataset2list import create_list
 
+max_sent = 30
 
 def clean_para(text):
     sentences = sent_tokenize(text)
     table = str.maketrans('', '', string.punctuation)
     stop_words = stopwords.words('english')
     data = []
-    for sentence in sentences:
+    l = len(sentences)
+    if l > max_sent:
+        l = max_sent
+    for i in range(l):
+        sentence = sentences[i]
         tokens = word_tokenize(sentence)
         words = [word for word in tokens if word.isalpha()]
         tokens = [w.lower() for w in tokens]
@@ -23,10 +29,12 @@ def clean_para(text):
 
 def get_dataset():
     text_list = create_list()
-    data = []
-    for text in text_list:
-        data.append(main(text))
-    return data d
+    # print(text_list)
+    data = []   
+    for ind, text in enumerate(text_list):
+        print(ind)
+        data.append(clean_para(text))
+    return data
 
 def main():
     get_dataset()
@@ -34,14 +42,5 @@ def main():
 
 if __name__ == '__main__':
     print("Cleaning the data")
-<<<<<<< HEAD:cleaning_whole.py
     main()
     
-=======
-    # file = open(filename, 'r')
-    # text = file.read()
-    # file.close()
-    text = "some text"
-    data = main(text)
-    print(data)
->>>>>>> 2cab9d048362c2f7d680ef73fbfc7c573ed32db7:cleaning.py
