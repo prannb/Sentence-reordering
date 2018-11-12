@@ -1,7 +1,8 @@
-from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 import numpy as np
 import random as ran
 import pickle
+import gensim
+from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 
 from keras.models import Sequential
 from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed
@@ -14,6 +15,7 @@ max_sent = 30
 NUM_CLASS = 20
 
 # input_lists = get_dataset()
+# pkl_filename = 'input_lists.pkl'
 pkl_filename = 'input_lists.pkl'
 # with open(pkl_filename, 'wb') as file:  
 #     pickle.dump(input_lists, file)
@@ -68,6 +70,22 @@ with open(pkl_filename, 'rb') as file:
 #           ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
 #           ['thank', 'listening']]]
 
+print("Loading....")
+wmodel = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True) 
+print("loaded")
+
+def infer_avg_word_vec(sen_words, vec_size = 300):
+  ndoc = len(sen_words)
+  wtv = np.zeros([300])
+  co = 0
+  for w in sen_words:
+    if w in wmodel.vocab:
+      wtv = wtv + wmodel.wv[w]
+      co = co + 1
+  if co ==0:
+    co =1
+  wtv = wtv/co
+  return wtv
 
 def list2mat(input_lists = input_lists, vec_size = 300):
   #returns sentence matrix numb_sent x vec_size, randomly shuffled matrix, shuffling order
@@ -77,16 +95,20 @@ def list2mat(input_lists = input_lists, vec_size = 300):
   shuff_sen_mat = np.zeros((n_sent, vec_size))
   shuff_order = list(range(n_sent))
   ran.shuffle(shuff_order)
-  documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(input_lists)]
-  model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
+  # documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(input_lists)]
+  # model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
+  # for i,sent in enumerate(input_lists):
+  #   sen_mat[i,:] = model.infer_vector(input_lists[i])
   for i,sent in enumerate(input_lists):
-    sen_mat[i,:] = model.infer_vector(input_lists[i])
+      sen_mat[i,:] = infer_avg_word_vec(input_lists[i])
+
+
   # print(sen_mat.shape)
   for i in range(n_sent):
     shuff_sen_mat[i,:] = sen_mat[shuff_order[i]]
   return sen_mat, shuff_sen_mat, shuff_order
 
-def order2output_naive_model(c):
+def order2output_lstm(c):
   op = np.identity(max_sent)
   order = c
   for ind,ele in enumerate(order):
@@ -117,5 +139,7 @@ def format_data(input_lists = input_lists):
     order[i,0:len(c)] = c
     n_sen_mat[i,0:a.shape[0],0:a.shape[1]] = a
     n_shuff_sen_mat[i,0:b.shape[0],0:b.shape[1]] = b
-    Y[i,:,:] = order2output_prann(c)# Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
+    # Y[i,:,:] = order2output_lstm(c)
+    Y[i,:,:] = order2output_prann(c)
+    # Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
   return n_shuff_sen_mat,Y,order
