@@ -2,3 +2,4 @@ GoogleNews-vectors-negative300.bin
 *.pyc
 *.pkl
 data/python3_data_names.tsv
+data/papers.csv

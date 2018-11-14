@@ -28,7 +28,7 @@ def clean_para(text):
     return data
 
 def get_dataset():
-    text_list = create_list()
+    text_list = create_list_nips()
     # print(text_list)
     data = []   
     for ind, text in enumerate(text_list):
