@@ -4,3 +4,4 @@ GoogleNews-vectors-negative300.bin
 data/python3_data_names.tsv
 data/*
 */*
+data/papers.csv
