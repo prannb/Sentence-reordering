@@ -1,0 +1,136 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+cleaning_whole.py	../cleaning_whole.py	1;"	kind:file	line:1
+sent_tokenize	../cleaning_whole.py	/^from nltk import sent_tokenize$/;"	kind:namespace	line:1
+word_tokenize	../cleaning_whole.py	/^from nltk.tokenize import word_tokenize$/;"	kind:namespace	line:2
+stopwords	../cleaning_whole.py	/^from nltk.corpus import stopwords$/;"	kind:namespace	line:3
+string	../cleaning_whole.py	/^import string$/;"	kind:namespace	line:4
+pickle	../cleaning_whole.py	/^import pickle$/;"	kind:namespace	line:5
+create_list	../cleaning_whole.py	/^from dataset2list import create_list$/;"	kind:namespace	line:6
+max_sent	../cleaning_whole.py	/^max_sent = 30$/;"	kind:variable	line:8
+clean_para	../cleaning_whole.py	/^def clean_para(text):$/;"	kind:function	line:10
+get_dataset	../cleaning_whole.py	/^def get_dataset():$/;"	kind:function	line:30
+main	../cleaning_whole.py	/^def main():$/;"	kind:function	line:39
+lstm_many2many.py	../lstm_many2many.py	1;"	kind:file	line:1
+Doc2Vec	../lstm_many2many.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:1
+TaggedDocument	../lstm_many2many.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:1
+np	../lstm_many2many.py	/^import numpy as np$/;"	kind:namespace	line:2
+ran	../lstm_many2many.py	/^import random as ran$/;"	kind:namespace	line:3
+pickle	../lstm_many2many.py	/^import pickle$/;"	kind:namespace	line:4
+Sequential	../lstm_many2many.py	/^from keras.models import Sequential$/;"	kind:namespace	line:6
+LSTM	../lstm_many2many.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:7
+Dense	../lstm_many2many.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:7
+Activation	../lstm_many2many.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:7
+Lambda	../lstm_many2many.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:7
+TimeDistributed	../lstm_many2many.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:7
+train_test_split	../lstm_many2many.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:8
+sen_vec_len	../lstm_many2many.py	/^sen_vec_len = 300$/;"	kind:variable	line:12
+max_sent	../lstm_many2many.py	/^max_sent = 30$/;"	kind:variable	line:13
+NUM_CLASS	../lstm_many2many.py	/^NUM_CLASS = 30$/;"	kind:variable	line:14
+n_epochs	../lstm_many2many.py	/^n_epochs = 30$/;"	kind:variable	line:15
+apply_model	../lstm_many2many.py	/^def apply_model(model, X_train, Y_train, X_valid, Y_valid):$/;"	kind:function	line:19
+lstm_many2many	../lstm_many2many.py	/^def lstm_many2many():$/;"	kind:function	line:37
+main	../lstm_many2many.py	/^def main():$/;"	kind:function	line:70
+paper.py	../paper.py	1;"	kind:file	line:1
+Model	../paper.py	/^from keras.models import Model$/;"	kind:namespace	line:1
+Input	../paper.py	/^from keras.layers import Input$/;"	kind:namespace	line:2
+LSTM	../paper.py	/^from keras.layers import LSTM$/;"	kind:namespace	line:3
+np	../paper.py	/^import numpy as np$/;"	kind:namespace	line:4
+train	../paper.py	/^train = []$/;"	kind:variable	line:8
+test	../paper.py	/^test = []$/;"	kind:variable	line:9
+dataset2list.py	../dataset2list.py	1;"	kind:file	line:1
+csv	../dataset2list.py	/^import csv$/;"	kind:namespace	line:1
+pickle	../dataset2list.py	/^import pickle$/;"	kind:namespace	line:2
+create_list	../dataset2list.py	/^def create_list(filename = 'data\/python3_data.tsv'):$/;"	kind:function	line:3
+filename	../dataset2list.py	/^filename = "train_list"$/;"	kind:variable	line:13
+file_obj	../dataset2list.py	/^file_obj = open(filename, 'wb')$/;"	kind:variable	line:14
+data	../dataset2list.py	/^data = create_list()$/;"	kind:variable	line:15
+encoder.py	../encoder.py	1;"	kind:file	line:1
+Model	../encoder.py	/^from keras.models import Model$/;"	kind:namespace	line:1
+Input	../encoder.py	/^from keras.layers import Input$/;"	kind:namespace	line:2
+LSTM	../encoder.py	/^from keras.layers import LSTM, Dense$/;"	kind:namespace	line:3
+Dense	../encoder.py	/^from keras.layers import LSTM, Dense$/;"	kind:namespace	line:3
+Sequential	../encoder.py	/^from keras.models import Sequential$/;"	kind:namespace	line:4
+np	../encoder.py	/^import numpy as np$/;"	kind:namespace	line:5
+tf	../encoder.py	/^import tensorflow as tf$/;"	kind:namespace	line:6
+pickle	../encoder.py	/^import pickle$/;"	kind:namespace	line:7
+len_sentence	../encoder.py	/^len_sentence = 100$/;"	kind:variable	line:10
+apply_softmax	../encoder.py	/^def apply_softmax(arr, t=1.0):$/;"	kind:function	line:12
+apply_attention	../encoder.py	/^def apply_attention(arr, att):$/;"	kind:function	line:18
+getcorrectOrder	../encoder.py	/^def getcorrectOrder(para, labels):$/;"	kind:function	line:25
+inputs1	../encoder.py	/^    inputs1 = Input(shape=(1,len_sentence))$/;"	kind:variable	line:43
+model_lstm	../encoder.py	/^    model_lstm = Model(inputs=inputs1, outputs=[lstm1, state_h, state_c])$/;"	kind:variable	line:47
+model	../encoder.py	/^    model = Sequential()$/;"	kind:variable	line:50
+data	../encoder.py	/^    data = np.ones(((3,10,len_sentence)))$/;"	kind:variable	line:55
+weightLSTM	../encoder.py	/^    weightLSTM = model_lstm.layers[1].get_weights()$/;"	kind:variable	line:57
+n	../encoder.py	/^        n = len(para)$/;"	kind:variable	line:59
+start	../encoder.py	/^        start = np.zeros((1, 1, len_sentence))$/;"	kind:variable	line:64
+att	../encoder.py	/^        att = apply_softmax(lstm_output)$/;"	kind:variable	line:70
+par_att	../encoder.py	/^        par_att = apply_attention(para, att)$/;"	kind:variable	line:71
+m	../encoder.py	/^        m = 100$/;"	kind:variable	line:73
+att	../encoder.py	/^            att = apply_softmax(lstm_output)$/;"	kind:variable	line:80
+par_att	../encoder.py	/^            par_att = apply_attention(para, att)$/;"	kind:variable	line:82
+labels	../encoder.py	/^        labels = np.arange(n).reshape(1,n)$/;"	kind:variable	line:91
+start	../encoder.py	/^        start = np.zeros(len_sentence).reshape(1,len_sentence)$/;"	kind:variable	line:96
+ytrain	../encoder.py	/^        ytrain = ytrain.reshape(1,10,10)$/;"	kind:variable	line:106
+weightLSTM	../encoder.py	/^        weightLSTM = model_lstm.layers[1].get_weights()$/;"	kind:variable	line:109
+matrix2num.py	../matrix2num.py	1;"	kind:file	line:1
+input_lists	../matrix2num.py	/^input_lists = [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'], ['thing'], ['dont', 'think'], ['would', 'feel', 'teenager', 'always', 'phone', 'friends'], ['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], ['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], ['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'], ['learn', 'countrysstates', 'outside'], ['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], ['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], ['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], ['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], ['might', 'know', 'child', 'forbidde', 'hospital', 'bed', 'driveby'], ['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], ['thank', 'listening']]$/;"	kind:variable	line:1
+m2n	../matrix2num.py	/^def m2n(input_lists = input_lists):$/;"	kind:function	line:4
+unscramble.py	../unscramble.py	1;"	kind:file	line:1
+pickle	../unscramble.py	/^import pickle$/;"	kind:namespace	line:1
+sent_tokenize	../unscramble.py	/^from nltk import sent_tokenize$/;"	kind:namespace	line:2
+word_tokenize	../unscramble.py	/^from nltk.tokenize import word_tokenize$/;"	kind:namespace	line:3
+stopwords	../unscramble.py	/^from nltk.corpus import stopwords$/;"	kind:namespace	line:4
+string	../unscramble.py	/^import string$/;"	kind:namespace	line:5
+np	../unscramble.py	/^import numpy as np$/;"	kind:namespace	line:6
+ran	../unscramble.py	/^import random as ran$/;"	kind:namespace	line:7
+gensim	../unscramble.py	/^import gensim$/;"	kind:namespace	line:8
+Doc2Vec	../unscramble.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:9
+TaggedDocument	../unscramble.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:9
+sen_vec_len	../unscramble.py	/^sen_vec_len = 300$/;"	kind:variable	line:12
+max_sent	../unscramble.py	/^max_sent = 30$/;"	kind:variable	line:13
+tokenise_raw	../unscramble.py	/^def tokenise_raw(text):$/;"	kind:function	line:15
+infer_avg_word_vec	../unscramble.py	/^def infer_avg_word_vec(sen_words, vec_size = 300):$/;"	kind:function	line:35
+list2mat	../unscramble.py	/^def list2mat(input_list, vec_size = sen_vec_len):$/;"	kind:function	line:48
+order2output	../unscramble.py	/^def order2output(c):$/;"	kind:function	line:69
+format_data	../unscramble.py	/^def format_data(input_lists):$/;"	kind:function	line:79
+load_model_nd_apply	../unscramble.py	/^def load_model_nd_apply(X,Y):$/;"	kind:function	line:97
+main	../unscramble.py	/^def main():$/;"	kind:function	line:112
+list2datset.py	../list2datset.py	1;"	kind:file	line:1
+np	../list2datset.py	/^import numpy as np$/;"	kind:namespace	line:1
+ran	../list2datset.py	/^import random as ran$/;"	kind:namespace	line:2
+pickle	../list2datset.py	/^import pickle$/;"	kind:namespace	line:3
+gensim	../list2datset.py	/^import gensim$/;"	kind:namespace	line:4
+Doc2Vec	../list2datset.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:5
+TaggedDocument	../list2datset.py	/^from gensim.models.doc2vec import Doc2Vec, TaggedDocument$/;"	kind:namespace	line:5
+Sequential	../list2datset.py	/^from keras.models import Sequential$/;"	kind:namespace	line:7
+LSTM	../list2datset.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:8
+Dense	../list2datset.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:8
+Activation	../list2datset.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:8
+Lambda	../list2datset.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:8
+TimeDistributed	../list2datset.py	/^from keras.layers import LSTM,Dense, Activation, Lambda, TimeDistributed$/;"	kind:namespace	line:8
+train_test_split	../list2datset.py	/^from sklearn.model_selection import train_test_split$/;"	kind:namespace	line:9
+get_dataset	../list2datset.py	/^from cleaning_whole import get_dataset$/;"	kind:namespace	line:11
+sen_vec_len	../list2datset.py	/^sen_vec_len = 300$/;"	kind:variable	line:13
+max_sent	../list2datset.py	/^max_sent = 30$/;"	kind:variable	line:14
+NUM_CLASS	../list2datset.py	/^NUM_CLASS = 20$/;"	kind:variable	line:15
+pkl_filename	../list2datset.py	/^pkl_filename = 'input_lists.pkl'$/;"	kind:variable	line:19
+input_lists	../list2datset.py	/^    input_lists = pickle.load(file)$/;"	kind:variable	line:23
+wmodel	../list2datset.py	/^wmodel = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True) $/;"	kind:variable	line:74
+infer_avg_word_vec	../list2datset.py	/^def infer_avg_word_vec(sen_words, vec_size = 300):$/;"	kind:function	line:77
+list2mat	../list2datset.py	/^def list2mat(input_lists = input_lists, vec_size = 300):$/;"	kind:function	line:90
+order2output_lstm	../list2datset.py	/^def order2output_lstm(c):$/;"	kind:function	line:111
+order2output_prann	../list2datset.py	/^def order2output_prann(c):$/;"	kind:function	line:121
+format_data	../list2datset.py	/^def format_data(input_lists = input_lists):$/;"	kind:function	line:129
+replace.py	../replace.py	1;"	kind:file	line:1
+replace_dic	../replace.py	/^replace_dic={'@CAPS1': 'broadtail',$/;"	kind:variable	line:1
+file_name	../replace.py	/^file_name = "data\/python3_data.tsv"$/;"	kind:variable	line:95
+datafile	../replace.py	/^datafile = open(file_name, "rb")$/;"	kind:variable	line:97
+data	../replace.py	/^data = datafile.read()$/;"	kind:variable	line:99
+data	../replace.py	/^      data = data.replace(key, replace_dic[key])$/;"	kind:variable	line:102
+out_file	../replace.py	/^out_file = open('data\/python3_data_names.tsv', 'wb')$/;"	kind:variable	line:104

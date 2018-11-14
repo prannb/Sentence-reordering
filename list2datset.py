@@ -11,12 +11,12 @@ from sklearn.model_selection import train_test_split
 from cleaning_whole import get_dataset
 #--------------------Model Variables-----------
 sen_vec_len = 300
-max_sent = 30
-NUM_CLASS = 20
+max_sent = 10
+NUM_CLASS = 10
 
 # input_lists = get_dataset()
 # pkl_filename = 'input_lists.pkl'
-pkl_filename = 'input_lists.pkl'
+pkl_filename = 'input_lists_names.pkl'
 # with open(pkl_filename, 'wb') as file:  
 #     pickle.dump(input_lists, file)
 with open(pkl_filename, 'rb') as file:  
@@ -139,7 +139,7 @@ def format_data(input_lists = input_lists):
     order[i,0:len(c)] = c
     n_sen_mat[i,0:a.shape[0],0:a.shape[1]] = a
     n_shuff_sen_mat[i,0:b.shape[0],0:b.shape[1]] = b
-    # Y[i,:,:] = order2output_lstm(c)
-    Y[i,:,:] = order2output_prann(c)
+    Y[i,:,:] = order2output_lstm(c)
+    # Y[i,:,:] = order2output_prann(c)
     # Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
   return n_shuff_sen_mat,Y,order
