@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 # from list2datset import format_data
 #--------------------Model Variables-----------
 sen_vec_len = 300
-max_sent = 10
+max_sent =10
 NUM_CLASS = max_sent
 n_epochs = 30
 

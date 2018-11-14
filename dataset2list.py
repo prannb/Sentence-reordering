@@ -19,7 +19,7 @@ def create_list(filename = 'data/python3_data.tsv'):
 
 
 def create_list_nips(filename = 'data/papers.csv'):
-	df = pd.read_csv
+	df = pd.read_csv(filename)
 	dataset = []
 	for ele in df.values:
 		if ele[5] == 'Abstract Missing':

@@ -6,3 +6,4 @@ data/*
 *.txt
 data/papers.csv
 *.csv
+models/*

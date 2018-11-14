@@ -3,9 +3,10 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import string
 import pickle
+from dataset2list import create_list_nips
 from dataset2list import create_list
 
-max_sent = 10
+max_sent = 5
 
 def clean_para(text):
     sentences = sent_tokenize(text)
@@ -29,6 +30,7 @@ def clean_para(text):
 
 def get_dataset():
     text_list = create_list(filename = 'data/python3_data_names.tsv')
+    # text_list = create_list_nips()
     # print(text_list)
     data = []   
     for ind, text in enumerate(text_list):

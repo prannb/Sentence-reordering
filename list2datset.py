@@ -6,15 +6,17 @@ from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from cleaning_whole import get_dataset
 #--------------------Model Variables-----------
 sen_vec_len = 300
-max_sent = 10
-NUM_CLASS = 10
+max_sent = 5
+NUM_CLASS = max_sent
 
-embedding = 'doc2vec'
-# embedding = 'word2vec'
+# embedding = 'doc2vec'
+embedding = 'word2vec'
 
 # input_lists = get_dataset()
 # pkl_filename = 'input_lists.pkl'
-pkl_filename = 'input_lists_names.pkl'
+# pkl_filename = 'input_lists_names_10.pkl'
+pkl_filename = 'input_lists_names_5.pkl'
+
 # with open(pkl_filename, 'wb') as file:  
 #     pickle.dump(input_lists, file)
 with open(pkl_filename, 'rb') as file:  
@@ -148,17 +150,24 @@ def format_data(input_lists = input_lists):
     # doc2vec_model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)  
     with open('models/doc2vec_model.pkl','rb') as file:
       doc2vec_model = pickle.load(file)
+  index = 0
   for i in range(len(input_lists)):
     print(i)
     if embedding == 'doc2vec':
       a,b,c = list2mat_doc_vec(doc2vec_model, input_lists[i])
     elif embedding == 'word2vec':
-      print("Word2Vec Embedding")
       a,b,c = list2mat_word_vec(input_lists[i])
-    order[i,0:len(c)] = c
-    n_sen_mat[i,0:a.shape[0],0:a.shape[1]] = a
-    n_shuff_sen_mat[i,0:b.shape[0],0:b.shape[1]] = b
-    Y[i,:,:] = order2output_lstm(c)
-    # Y[i,:,:] = order2output_prann(c)
-    # Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
+    n_sent_point = len(c)
+    if n_sent_point >= max_sent:
+      order[index,0:len(c)] = c
+      n_sen_mat[index,0:a.shape[0],0:a.shape[1]] = a
+      n_shuff_sen_mat[index,0:b.shape[0],0:b.shape[1]] = b
+      Y[index,:,:] = order2output_lstm(c)
+      # Y[i,:,:] = order2output_prann(c)
+      # Y[k,x,y] shows that kth paragraph's xth shuffled sentence is at yth position in original sentence
+      index = index + 1
+  print(index)
+  n_shuff_sen_mat = n_shuff_sen_mat[0:index,:,:]
+  Y = Y[0:index,:,:]
+  order = order[0:index,:]
   return n_shuff_sen_mat,Y,order
