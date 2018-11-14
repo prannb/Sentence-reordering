@@ -6,69 +6,21 @@ from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from cleaning_whole import get_dataset
 #--------------------Model Variables-----------
 sen_vec_len = 300
-max_sent = 5
+max_sent = 10
 NUM_CLASS = max_sent
 
+data = 'nips'
+# data = 'names'
 # embedding = 'doc2vec'
 embedding = 'word2vec'
 
 # input_lists = get_dataset()
-# pkl_filename = 'input_lists.pkl'
-# pkl_filename = 'input_lists_names_10.pkl'
-pkl_filename = 'input_lists_names_5.pkl'
-
+pkl_filename = 'input_lists_'+data+'_'+ str(max_sent)+'.pkl'
 # with open(pkl_filename, 'wb') as file:  
 #     pickle.dump(input_lists, file)
 with open(pkl_filename, 'rb') as file:  
     input_lists = pickle.load(file)
-# input_lists = [[['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
-#  				['thing'], 
-#  				['dont', 'think'],
-#   				['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
-#   				['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], 
-#   				['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], 
-#   				['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'],
-#   				['learn', 'countrysstates', 'outside'], 
-#   				['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], 
-#   				['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
-#   				['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
-#   				['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-#   				['might', 'know', 'child', 'forbidde', 'hospital', 'bed', 'driveby'], 
-#   				['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
-#   				['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-#   				['thank', 'listening']],
-#           [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
-#         ['thing'], 
-#         ['dont', 'think'],
-#           ['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
-#           ['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], 
-#           ['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], 
-#           ['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'],
-#           ['learn', 'countrysstates', 'outside'], 
-#           ['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], 
-#           ['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
-#           ['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
-#           ['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-#           ['might', 'know', 'child', 'forbidde', 'hospital', 'bed', 'driveby'], 
-#           ['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
-#           ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-#           ['thank', 'listening']],
-#           [['dear', 'local', 'newspaper', 'think', 'effects', 'computers', 'people', 'great', 'learning', 'skillsaffects', 'give', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'astronomy', 'keeps', 'us', 'troble'],
-#         ['thing'], 
-#         ['dont', 'think'],
-#           ['would', 'feel', 'teenager', 'always', 'phone', 'friends'], 
-#           ['ever', 'time', 'chat', 'friends', 'buisness', 'partner', 'things'], 
-#           ['well', 'new', 'way', 'chat', 'computer', 'plenty', 'sites', 'internet', 'facebook', 'myspace', 'ect'], 
-#           ['think', 'setting', 'meeting', 'boss', 'computer', 'teenager', 'fun', 'phone', 'rushing', 'get', 'cause', 'want', 'use'],
-#           ['learn', 'countrysstates', 'outside'], 
-#           ['well', 'computerinternet', 'new', 'way', 'learn', 'going', 'time'], 
-#           ['might', 'think', 'child', 'spends', 'lot', 'time', 'computer', 'ask', 'question', 'economy', 'sea', 'floor', 'spreading', 'even', 'surprise', 'much', 'heshe', 'knows'], 
-#           ['believe', 'computer', 'much', 'interesting', 'class', 'day', 'reading', 'books'], 
-#           ['child', 'home', 'computer', 'local', 'library', 'better', 'friends', 'fresh', 'perpressured', 'something', 'know', 'isnt', 'right'], 
-#           ['might', 'know', 'child', 'forbidde', 'hospital', 'bed', 'driveby'], 
-#           ['rather', 'child', 'computer', 'learning', 'chatting', 'playing', 'games', 'safe', 'sound', 'home', 'community', 'place'], 
-#           ['hope', 'reached', 'point', 'understand', 'agree', 'computers', 'great', 'effects', 'child', 'gives', 'us', 'time', 'chat', 'friendsnew', 'people', 'helps', 'us', 'learn', 'globe', 'believe', 'keeps', 'us', 'troble'], 
-#           ['thank', 'listening']]]
+
 if embedding == 'word2vec':
   print("Loading Word2vec Model....")
   wmodel = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True) 
