@@ -12,69 +12,84 @@ import math
 sen_vec_len = 300
 max_sent = 30
 
-def tokenise_raw(text):
-    sentences = sent_tokenize(text)
-    table = str.maketrans('', '', string.punctuation)
-    stop_words = stopwords.words('english')
-    data = []
-    for sentence in sentences:
-        tokens = word_tokenize(sentence)
-        words = [word for word in tokens if word.isalpha()]
-        tokens = [w.lower() for w in tokens]
-        stripped = [w.translate(table) for w in tokens]
-        words = [word for word in stripped if word.isalpha()]
-        words = [w for w in words if not w in stop_words]
-        data.append(words)
-    # print(data)
-    return data,sentences
+# data = 'nips'
+data = 'names'
 
-print("Loading....")
-wmodel = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True) 
-print("loaded")
+embedding = 'doc2vec'
+# embedding = 'word2vec'
+
+def tokenise_raw(text):
+		sentences = sent_tokenize(text)
+		table = str.maketrans('', '', string.punctuation)
+		stop_words = stopwords.words('english')
+		data = []
+		for sentence in sentences:
+				tokens = word_tokenize(sentence)
+				words = [word for word in tokens if word.isalpha()]
+				tokens = [w.lower() for w in tokens]
+				stripped = [w.translate(table) for w in tokens]
+				words = [word for word in stripped if word.isalpha()]
+				words = [w for w in words if not w in stop_words]
+				data.append(words)
+		# print(data)
+		return data,sentences
+
+if embedding == 'word2vec':
+	print("Loading....")
+	wmodel = gensim.models.KeyedVectors.load_word2vec_format('GoogleNews-vectors-negative300.bin', binary=True) 
+	print("loaded")
+elif embedding == 'doc2vec':
+	doc2vec_model_path = 'models/doc2vec_'+data+'_model.pkl'
+	with open(doc2vec_model_path,'rb') as file:
+		doc2vec_model = pickle.load(file)
 
 def infer_avg_word_vec(sen_words, vec_size = 300):
-  ndoc = len(sen_words)
-  wtv = np.zeros([300])
-  co = 0
-  for w in sen_words:
-    if w in wmodel.vocab:
-      wtv = wtv + wmodel.wv[w]
-      co = co + 1
-  if co ==0:
-    co =1
-  wtv = wtv/co
-  return wtv
+	ndoc = len(sen_words)
+	wtv = np.zeros([300])
+	co = 0
+	for w in sen_words:
+		if w in wmodel.vocab:
+			wtv = wtv + wmodel.wv[w]
+			co = co + 1
+	if co ==0:
+		co =1
+	wtv = wtv/co
+	return wtv
 
 def list2mat(input_list, vec_size = sen_vec_len):
-  #returns sentence matrix numb_sent x vec_size, randomly shuffled matrix, shuffling order
-  print(input_list)
-  n_sent = len(input_list)
-  # print(n_sent)
-  sen_mat = np.zeros((n_sent, vec_size))
-  shuff_sen_mat = np.zeros((n_sent, vec_size))
-  shuff_order = list(range(n_sent))
-  ran.shuffle(shuff_order)
-  # print(shuff_order)
-  # documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(input_list)]
-  # model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
-  # for i,sent in enumerate(input_list):
-  #   sen_mat[i,:] = model.infer_vector(input_list[i])
-  for i,sent in enumerate(input_list):
-    sen_mat[i,:] = infer_avg_word_vec(input_list[i])
-  for i in range(n_sent):
-    shuff_sen_mat[i,:] = sen_mat[shuff_order[i]]
+	#returns sentence matrix numb_sent x vec_size, randomly shuffled matrix, shuffling order
+	print(input_list)
+	n_sent = len(input_list)
+	# print(n_sent)
+	sen_mat = np.zeros((n_sent, vec_size))
+	shuff_sen_mat = np.zeros((n_sent, vec_size))
+	shuff_order = list(range(n_sent))
+	ran.shuffle(shuff_order)
+	# print(shuff_order)
+	# documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(input_list)]
+	# model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)
+	# for i,sent in enumerate(input_list):
+	#   sen_mat[i,:] = model.infer_vector(input_list[i])
+	for i,sent in enumerate(input_list):
+		if embedding == 'word2vec':
+			sen_mat[i,:] = infer_avg_word_vec(input_list[i])
+		elif embedding == 'doc2vec':
+			sen_mat[i,:] = doc2vec_model.infer_vector(input_list[i])
 
-  return sen_mat, shuff_sen_mat, shuff_order
+	for i in range(n_sent):
+		shuff_sen_mat[i,:] = sen_mat[shuff_order[i]]
+
+	return sen_mat, shuff_sen_mat, shuff_order
 
 def order2output(c):
-  op = np.identity(max_sent)
-  order = c
-  for ind,ele in enumerate(order):
-    d = order[0:ind+1]
-    d.sort()
-    op[ind,ind] = 0
-    op[ind,d.index(ele)] = 1 
-  return op
+	op = np.identity(max_sent)
+	order = c
+	for ind,ele in enumerate(order):
+		d = order[0:ind+1]
+		d.sort()
+		op[ind,ind] = 0
+		op[ind,d.index(ele)] = 1 
+	return op
 
 def format_data(input_lists):
 	n = len(input_lists)
@@ -98,6 +113,7 @@ def format_data(input_lists):
 	return n_shuff_sen_mat,Y,order
 
 def Y2c_lstm(Y):
+	print(Y)
 	n_sent = Y.shape[0]
 	c = np.zeros(n_sent)-1
 	for i in range(n_sent-1,-1,-1):
@@ -160,4 +176,4 @@ def main():
 	# run_for_mat(X,Y)
 
 if __name__ == '__main__':
-  main()
+	main()
