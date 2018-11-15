@@ -10,21 +10,35 @@ from sklearn.model_selection import train_test_split
 # from list2datset import format_data
 #--------------------Model Variables-----------
 sen_vec_len = 300
-max_sent =10
+max_sent =5
 NUM_CLASS = max_sent
 n_epochs = 30
 
 
+data = 'nips'
+# data = 'names'
+embedding = 'dtv'
+# embedding = 'wtv'
+
+X_path = 'data/X_'+str(max_sent)+'_'+embedding+'_'+data+'.pkl'
+Y_path = 'data/Y_'+str(max_sent)+'_'+embedding+'_'+data+'.pkl'
+model_path = 'models/'+data +'_'+str(max_sent)+'_'+embedding+'.pkl' 
+Y_true_path = 'output/Y_true_'+str(max_sent)+'_'+embedding+'_'+data+'.pkl'
+Y_out_path = 'output/Y_out_'+str(max_sent)+'_'+embedding+'_'+data+'.pkl'
 
 def apply_model(model, X_train, Y_train, X_valid, Y_valid):
-  pkl_filename = "unscramble.pkl" 
   print(model.summary())
-  model.fit(X_train, Y_train, batch_size =1, epochs = n_epochs,  verbose = 5)
+  model.fit(X_train, Y_train, batch_size =1, epochs = n_epochs,  verbose = 1)
   # always write here, best models handled by hand to avoid over-writing
-  with open(pkl_filename, 'wb') as file:  
+  with open(model_path, 'wb') as file:  
     pickle.dump(model, file)
-  with open(pkl_filename, 'rb') as file:  
+  with open(model_path, 'rb') as file:  
     pickle.load(file)
+  with open(Y_true_path, 'wb') as file:  
+    pickle.dump(Y_valid, file)
+  Y_out = model.predict(X_valid)
+  with open(Y_true_path, 'wb') as file:  
+    pickle.dump(Y_out,file)
   X_test = X_valid[0:2,:,:]
   Y_test = Y_valid[0:2,:,:]
   for i in range(X_test.shape[0]):
@@ -41,9 +55,9 @@ def lstm_many2many():
   # with open('data/Y_10_wtv_stories_replaced.pkl','wb') as file:
   #   input_lists = pickle.dump(Y, file) 
   train = True
-  with open('data/X_10_wtv_stories_replaced.pkl','rb') as file:  
+  with open(X_path,'rb') as file:  
     X = pickle.load(file)
-  with open('data/Y_10_wtv_stories_replaced.pkl','rb') as file:  
+  with open(Y_path,'rb') as file:  
     Y = pickle.load(file)
 
   # X = X[0:200,:,:]

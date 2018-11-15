@@ -11,8 +11,11 @@ NUM_CLASS = max_sent
 
 data = 'nips'
 # data = 'names'
-# embedding = 'doc2vec'
-embedding = 'word2vec'
+embedding = 'doc2vec'
+# embedding = 'word2vec'
+
+if embedding == 'doc2vec':
+  doc2vec_model_path = 'models/doc2vec_'+data+'_model.pkl'
 
 # input_lists = get_dataset()
 pkl_filename = 'input_lists_'+data+'_'+ str(max_sent)+'.pkl'
@@ -94,13 +97,16 @@ def format_data(input_lists = input_lists):
   order = np.zeros((n,max_sent))
   order = order-1
   if embedding == 'doc2vec':
-    sentences = []
-    # for point in input_lists:
-    #   for sent in point:
-    #     sentences.append(sent)
-    # documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(sentences)]
-    # doc2vec_model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)  
-    with open('models/doc2vec_model.pkl','rb') as file:
+  #   sentences = []
+  #   vec_size = sen_vec_len
+  #   for point in input_lists:
+  #     for sent in point:
+  #       sentences.append(sent)
+  #   documents = [TaggedDocument(doc, [i]) for i, doc in enumerate(sentences)]
+  #   doc2vec_model = Doc2Vec(documents, vector_size=vec_size, window=2, min_count=1, workers=4)  
+  #   with open(doc2vec_model_path,'wb') as file:
+  #     pickle.dump(doc2vec_modelfile)
+    with open(doc2vec_model_path,'rb') as file:
       doc2vec_model = pickle.load(file)
   index = 0
   for i in range(len(input_lists)):
